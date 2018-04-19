@@ -13,10 +13,10 @@ public class ResultVOUtil {
     }
 
     public static ResultVO success() {
-        return  success(null);
+        return success(null);
     }
 
-    public static ResultVO error(Integer code ,String message) {
+    public static ResultVO error(Integer code, String message) {
         ResultVO resultVO = new ResultVO();
         resultVO.setCode(code);
         resultVO.setMessage(message);

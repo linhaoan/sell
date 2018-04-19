@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value="/buyer/product")
+@RequestMapping(value = "/buyer/product")
 public class BuyerProductController {
 
     @Autowired
@@ -49,8 +49,8 @@ public class BuyerProductController {
             productVO.setCategoryName(productCategory.getCategoryName());
 
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
-            for(ProductInfo productInfo : productInfoList) {
-                if(productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
+            for (ProductInfo productInfo : productInfoList) {
+                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
                     BeanUtils.copyProperties(productInfo, productInfoVO);
                     productInfoVOList.add(productInfoVO);
