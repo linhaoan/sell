@@ -1,17 +1,20 @@
 package com.linhao.sell.dataobject;
 
+import com.linhao.sell.enums.OrderStatusEnum;
+import com.linhao.sell.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @DynamicUpdate
-@DynamicInsert
 @Data
 public class OrderMaster {
 
@@ -40,16 +43,15 @@ public class OrderMaster {
      * 订单总金额
      */
     private BigDecimal orderAmount;
-    /**
-     * 订单状态 默认为新下单 0
-     */
-    private Integer orderStatus;
-    /**
-     * 支付状态 未支付 0
-     */
-    private Integer payStatus;
+
+    /** 订单状态, 默认为0新下单. */
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+
+    /** 支付状态, 默认为0未支付. */
+    private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     private Date createTime;
 
     private Date updateTime;
+
 }
