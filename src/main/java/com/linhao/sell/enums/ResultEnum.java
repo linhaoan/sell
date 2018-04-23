@@ -33,6 +33,8 @@ public enum ResultEnum {
 
     ORDER_PAY_STATUS_ERROR (107,"订单支付状态不正确"),
 
+    WXPAY_NOTIFY_MONEY_VERIFY_ERROR(21, "微信支付异步通知金额校验不通过"),
+
     ;
     private Integer code;
 

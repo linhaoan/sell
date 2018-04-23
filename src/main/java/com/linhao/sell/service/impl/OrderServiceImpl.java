@@ -14,6 +14,7 @@ import com.linhao.sell.enums.ResultEnum;
 import com.linhao.sell.repository.OrderDetailRepository;
 import com.linhao.sell.repository.OrderMasterRepository;
 import com.linhao.sell.service.OrderService;
+import com.linhao.sell.service.PayService;
 import com.linhao.sell.service.ProductInfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -27,7 +28,6 @@ import org.springframework.util.CollectionUtils;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +43,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -148,9 +151,9 @@ public class OrderServiceImpl implements OrderService {
 
         //TODO
         // 4.如果已支付，需要退款
-//        if(PayStatusEnum.SUCCESS.getCode().equals(orderDTO.getPayStatus())) {
-//
-//        }
+        if(PayStatusEnum.SUCCESS.getCode().equals(orderDTO.getPayStatus())) {
+            payService.refund(orderDTO);
+        }
         return orderDTO;
     }
 
