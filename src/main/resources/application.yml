@@ -1,3 +1,6 @@
 spring:
   profiles:
-    active: dev
+    active: test
+wechat:
+    mpAppId: wx96fc17101ae732e9
+    mpAppSecret: 0c8cae8f8795ca62f96bfc791030fcb0

@@ -15,6 +15,8 @@ public enum ResultEnum {
 
     ORDER_OWNER_ERROR(94,"订单查询人错误"),
 
+    WECHAT_AUTH_ERROR (95,"微信授权异常"),
+
     PRODUCT_NOT_EXIST (100,"商品不存在"),
 
     PRODUCT_STOCK_ERROR (101,"商品库存不正确"),
