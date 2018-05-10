@@ -1,8 +1,12 @@
 package com.linhao.sell.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.linhao.sell.Utils.EnumUtil;
 import com.linhao.sell.Utils.serializer.Date2LongSerializer;
 import com.linhao.sell.dataobject.OrderDetail;
+import com.linhao.sell.enums.OrderStatusEnum;
+import com.linhao.sell.enums.PayStatusEnum;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -53,4 +57,14 @@ public class OrderDTO {
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
 }

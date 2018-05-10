@@ -40,7 +40,7 @@ public class BuyerOrderController {
                                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             log.error("【创建订单】参数不正确，orderForm={}", orderForm);
-            throw new SellException(ResultEnum.PRARM_ERROR,
+            throw new SellException(ResultEnum.PARAM_ERROR,
                     bindingResult.getFieldError().getDefaultMessage());
         }
 
@@ -87,7 +87,7 @@ public class BuyerOrderController {
 
         if(StringUtils.isEmpty(orderId)) {
             log.error("【查询订单详情】orderId为空");
-            throw new SellException(ResultEnum.PRARM_ERROR);
+            throw new SellException(ResultEnum.PARAM_ERROR);
         }
 
         OrderDTO orderDTO = buyerService.findOrderOne(buyerOpenid,orderId);
@@ -107,7 +107,7 @@ public class BuyerOrderController {
 
         if(StringUtils.isEmpty(orderId)) {
             log.error("【取消订单】orderId为空");
-            throw new SellException(ResultEnum.PRARM_ERROR);
+            throw new SellException(ResultEnum.PARAM_ERROR);
         }
 
         buyerService.cancelOrder(buyerOpenid,orderId);

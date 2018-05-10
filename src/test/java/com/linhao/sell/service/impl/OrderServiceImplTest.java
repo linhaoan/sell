@@ -17,8 +17,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderServiceImplTest {
@@ -82,5 +80,12 @@ public class OrderServiceImplTest {
         OrderDTO orderDTO = orderService.findOne("1524201366040814991");
         OrderDTO result = orderService.paid(orderDTO);
         Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(),result.getPayStatus());
+    }
+
+    @Test
+    public void list(){
+        Pageable pageable = new PageRequest(0, 20);
+        Page<OrderDTO> orderDTOPage = orderService.findList(pageable);
+        Assert.assertNotNull(orderDTOPage);
     }
 }

@@ -5,7 +5,13 @@ import lombok.Getter;
 @Getter
 public enum ResultEnum {
 
-    PRARM_ERROR(90,"参数不正确"),
+    SUCCESS(0,"成功"),
+
+    ORDER_CANCEL_SUCCESS(1,"取消订单成功"),
+
+    ORDER_FINISH_SUCCESS(2,"完结订单成功"),
+
+    PARAM_ERROR(90,"参数不正确"),
 
     CONVERTER_ERROR (91,"对象转换错误"),
 
