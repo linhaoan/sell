@@ -11,6 +11,8 @@ public enum ResultEnum {
 
     ORDER_FINISH_SUCCESS(2,"完结订单成功"),
 
+    PRODUCT_STATUS_ERROR(3,"更新产品状态异常"),
+
     PARAM_ERROR(90,"参数不正确"),
 
     CONVERTER_ERROR (91,"对象转换错误"),

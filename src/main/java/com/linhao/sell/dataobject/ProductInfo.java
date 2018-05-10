@@ -1,5 +1,8 @@
 package com.linhao.sell.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.linhao.sell.Utils.EnumUtil;
+import com.linhao.sell.enums.ProductStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -55,5 +58,9 @@ public class ProductInfo {
     public ProductInfo() {
     }
 
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 
 }

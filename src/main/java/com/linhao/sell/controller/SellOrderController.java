@@ -28,10 +28,12 @@ public class SellOrderController {
     public ModelAndView list(@RequestParam(value ="page",defaultValue = "1") Integer page,
                              @RequestParam(value = "size",defaultValue = "20") Integer size,
                              Map<String,Object> map) {
-        PageRequest request = new PageRequest(page-1,size);
+        PageRequest request = new PageRequest(page - 1, size);
         Page<OrderDTO> orderDTOPage = orderService.findList(request);
-        map.put("orderDTOPage",orderDTOPage);
-        return new ModelAndView("order/list",map);
+        map.put("orderDTOPage", orderDTOPage);
+        map.put("currentPage", page);
+        map.put("size", size);
+        return new ModelAndView("order/list", map);
     }
 
     /**
