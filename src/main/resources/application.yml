@@ -4,7 +4,14 @@ spring:
 wechat:
     mpAppId: wxd898fcb01713c658
     mpAppSecret: 29d8a650db31472aa87800e3b0d739f2
+    openAppId: wx6ad144e54af67d87
+    openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
     mchId: 1483469312
     mchKey: C5245D70627C1F8E9964D494B0735025
     keyPath: /var/weixin_cert/h5.p12
     notifyUrl: http://selllinhaoprod.mynatapp.cc/sell/pay/notify
+
+projectUrl:
+    wechatMpAuthorize: http://selllinhaoprod.mynatapp.cc
+    wechatOpenAuthorize: http://selllinhaoprod.mynatapp.cc
+    sell: http://selllinhaoprod.mynatapp.cc

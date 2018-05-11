@@ -13,6 +13,12 @@ public enum ResultEnum {
 
     PRODUCT_STATUS_ERROR(3,"更新产品状态异常"),
 
+    WECHAT_MP_ERROR(4,"微信二维码登陆错误"),
+
+    LOGIN_FAIL(5,"登陆信息不正确"),
+
+    LOGOUT_SUCCESS(6,"退出登录成功"),
+
     PARAM_ERROR(90,"参数不正确"),
 
     CONVERTER_ERROR (91,"对象转换错误"),
