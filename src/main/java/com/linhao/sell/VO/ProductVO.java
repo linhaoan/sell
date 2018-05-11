@@ -3,11 +3,13 @@ package com.linhao.sell.VO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class ProductVO {
+public class ProductVO implements Serializable {
 
+    private static final long serialVersionUID = 7539887323887689047L;
     @JsonProperty("name")
     private String categoryName;
     @JsonProperty("type")

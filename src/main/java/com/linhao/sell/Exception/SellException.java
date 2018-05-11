@@ -1,7 +1,9 @@
 package com.linhao.sell.Exception;
 
 import com.linhao.sell.enums.ResultEnum;
+import lombok.Getter;
 
+@Getter
 public class SellException extends RuntimeException{
 
     private Integer code;
@@ -14,5 +16,10 @@ public class SellException extends RuntimeException{
     public SellException(ResultEnum resultEnum,String message) {
         super(message);
         this.code = resultEnum.getCode();
+    }
+
+    public SellException(int code,String message) {
+        super(message);
+        this.code = code;
     }
 }

@@ -10,6 +10,7 @@ import com.linhao.sell.service.ProductCategoryService;
 import com.linhao.sell.service.ProductInfoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/buyer/product")
-public class BuyerProductController {
+public class  BuyerProductController {
 
     @Autowired
     private ProductInfoService productInfoService;
@@ -29,6 +30,8 @@ public class BuyerProductController {
     private ProductCategoryService productCategoryService;
 
     @GetMapping(value = "/list")
+    @Cacheable(cacheNames = "product", key = "#sellerId", condition = "#sellerId.length() > 3", unless = "#result.getCode() != 0")
+//    @RequestParam("sellerId") String sellerId
     public ResultVO list() {
         // 1.查询所有上架商品
         List<ProductInfo> productInfoList = productInfoService.findUpAll();

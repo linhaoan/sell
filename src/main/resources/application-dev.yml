@@ -14,6 +14,8 @@ spring:
 
 server:
   context-path: /sell
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
 #logging:
 #  pattern:
 #    console: "%d - %msg%n"

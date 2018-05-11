@@ -13,9 +13,7 @@ import com.linhao.sell.enums.PayStatusEnum;
 import com.linhao.sell.enums.ResultEnum;
 import com.linhao.sell.repository.OrderDetailRepository;
 import com.linhao.sell.repository.OrderMasterRepository;
-import com.linhao.sell.service.OrderService;
-import com.linhao.sell.service.PayService;
-import com.linhao.sell.service.ProductInfoService;
+import com.linhao.sell.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +31,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Slf4j
-public class OrderServiceImpl implements OrderService {
+public class  OrderServiceImpl implements OrderService {
 
     @Autowired
     private ProductInfoService productInfoService;
@@ -46,6 +44,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -87,6 +91,9 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity())).collect(Collectors.toList());
         productInfoService.decreaseStock(cartDTOList);
         orderDTO.setOrderId(orderId);
+
+        //发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
         return orderDTO;
     }
 
@@ -181,6 +188,7 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_ERROR);
         }
 
+        pushMessageService.orderStatus(orderDTO);
         return orderDTO;
     }
 
